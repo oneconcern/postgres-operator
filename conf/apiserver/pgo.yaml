@@ -4,13 +4,13 @@ Cluster:
   Badger:  false
   CCPImageTag:  centos7-10.5-2.1.0
   Port:  5432
-  User:  testuser
-  Database:  userdb
+  User:  carto
+  Database:  cartodb
   PasswordAgeDays:  60
   PasswordLength:  8
   Strategy:  1
   Replicas:  0
-  ArchiveMode:  false
+  ArchiveMode:  true
   ArchiveTimeout:  60
   ServiceType:  ClusterIP
   Backrest:  false
@@ -20,23 +20,11 @@ BackupStorage: storage1
 ReplicaStorage: storage1
 Storage:
   storage1:
-    AccessMode:  ReadWriteMany
+    AccessMode:  ReadWriteOnce
     Size:  200M
     StorageType:  create
     SupplementalGroups:  65534
-  storage2:
-    AccessMode:  ReadWriteOnce
-    Size:  333M
-    StorageType:  dynamic
-    StorageClass:  gluster-heketi
-    Fsgroup:  26
-  storage3:
-    AccessMode:  ReadWriteOnce
-    Size:  440M
-    StorageType:  dynamic
-    StorageClass:  fast
-    Fsgroup:  26
-DefaultContainerResource: 
+DefaultContainerResource:
 ContainerResources:
   small:
     RequestsMemory:  512Mi
@@ -50,7 +38,7 @@ ContainerResources:
     LimitsCPU:  4.0
 Pgo:
   AutofailSleepSeconds:  9
-  Audit:  false
+  Audit:  true
   LSPVCTemplate:  /config/pgo.lspvc-template.json
   LoadTemplate:  /config/pgo.load-template.json
   COImagePrefix:  crunchydata
