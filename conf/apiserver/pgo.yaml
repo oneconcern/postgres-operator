@@ -21,9 +21,10 @@ ReplicaStorage: storage1
 Storage:
   storage1:
     AccessMode:  ReadWriteOnce
-    Size:  200M
-    StorageType:  create
-    SupplementalGroups:  65534
+    Size:  1Gi
+    StorageType:  dynamic
+    StorageClass:  gp2
+    Fsgroup:  26
 DefaultContainerResource:
 ContainerResources:
   small:
